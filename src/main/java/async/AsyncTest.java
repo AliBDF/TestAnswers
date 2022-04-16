@@ -22,16 +22,34 @@ class AsyncTest {
       new Ceo("ceo_3", "Bill")
   );
 
-  public static CompletableFuture<Option<Ceo>> getCeoById(String ceo_id) {
-    return null;
+ public static CompletableFuture<Option<Ceo>> getCeoById(String ceo_id) {
+    return CompletableFuture.supplyAsync(()->{
+        Option<Ceo> res=Option.none();  
+    for (Ceo a:ceos)
+       if (a.id==ceo_id)
+        res=Option.of(a);
+    return res;});
   }
 
-  public static CompletableFuture<Option<Enterprise>> getEnterpriseByCeoId(String ceo_id) {
-    return null;
+  public static CompletableFuture<Option<Enterprise>> getEnterpriseByCeoId(String ceo_id){
+    
+
+    return CompletableFuture.supplyAsync(()->
+    {Option<Enterprise> res=Option.none();  
+        for (Enterprise a:enterprises)
+           if (a.ceo_id==ceo_id)
+            res=Option.of(a);
+        return res;});
   }
 
   public static CompletableFuture<Tuple2<Option<Ceo>, Option<Enterprise>>> getCEOAndEnterprise(String ceo_id) {
-    return null;
-  }
-
+    return    getCeoById(ceo_id).thenApply(
+        ceo->Tuple.of(ceo,
+            getEnterpriseByCeoId(ceo_id).join()));
+            
+            
+      
+    }
 }
+
+

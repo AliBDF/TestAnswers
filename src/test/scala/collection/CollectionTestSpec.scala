@@ -8,7 +8,7 @@ import scala.collection.JavaConverters._
 class CollectionTestSpec extends AnyFlatSpec with Matchers {
 
   "The Collection test" should "compute some value for first method" in {
-    CollectionTest.compute1(List().asJava) shouldEqual List().asJava
+   CollectionTest.compute1(List().asJava) shouldEqual List().asJava
     CollectionTest.compute1(List(0, 1, 2, 5, 10).map(Integer.valueOf).asJava) shouldEqual List(243.0, 3125.0, 16807.0, 371293.0, 6436343.0).asJava
   }
 
