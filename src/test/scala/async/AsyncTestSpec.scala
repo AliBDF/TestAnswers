@@ -9,7 +9,7 @@ class AsyncTestSpec extends AnyFlatSpec with Matchers {
 
   "The Async test" should "compute ceo and enterprise" in {
 
-   // Tuple.of(None, None) shouldEqual Tuple.of(None, None)
+    Tuple.of(None, None) shouldEqual Tuple.of(None, None)
 
     val result1 = AsyncTest.getCEOAndEnterprise("12").get()
     result1.toString() shouldEqual "(None, None)"
